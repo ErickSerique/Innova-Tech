@@ -150,7 +150,8 @@ body {
   margin-top: 420px; /* Ajuste para estar logo abaixo do vídeo */
   position: relative;
   width: 700px;
-  font-size: 26px; /* Tamanho da fonte aumentado */
+  font-size: 20px; /* Tamanho da fonte aumentado */
+  text-align: justify;
 }
 
 .btn-gradient-purple{

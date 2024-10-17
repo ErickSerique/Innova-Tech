@@ -119,8 +119,11 @@ body {
 }
 
 .py-5 {
-  margin-top: 120px;
-  background-image: url("");
+  margin-top: 75px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/037/044/781/non_2x/abstract-colorful-technology-line-wave-background-modern-purple-blue-gradient-flowing-wave-lines-futuristic-technology-concept-illustration-pro-vector.jpg");
+  background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-position: center; /* Centraliza a imagem */
 }
 
 .navbar {

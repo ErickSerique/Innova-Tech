@@ -261,3 +261,47 @@ body {
   text-align: center;
 }
 /*termina rodape*/
+
+.form-outline.success input {
+  border-color: #2ecc71;
+}
+.form-outline.error input {
+  border-color: #e74c3c;
+  margin-bottom: 15px;
+}
+.form-outline.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+.form-outline.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+  margin-top: -10px;
+}
+.form-outline.error small {
+  visibility: visible;
+  color: #e74c3c;
+  margin-top: -10px;
+}
+.form-outline small {
+  font-size: 12px;
+  visibility: hidden;
+ position: absolute;
+ margin-left: 15px;
+}
+.form-outline i {
+  position: absolute;
+  visibility: hidden;
+}
+.form-outline label {
+border-color: white;
+
+}
+
+.form-outline{
+  padding: 10px;
+}
+
+.form-outline .mb-3{
+  border-color: white;
+}

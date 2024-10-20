@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -72,27 +73,33 @@
                           alt="logo"/>
                         <h4 class="mt-1 mb-5 pb-1">Nós somos a <strong>InnovaTech</strong></h4>
                       </div>
-                      <form>
+                      <form id="form">
                         <p>Faça o seu Login:</p>
                         <div class="form-outline mb-3">
-                          <label class="form-label" for="form2Example11">Usuário</label>
-                          <input type="email" id="form2Example11" class="form-control" placeholder="Número de telefone ou endereço de e-mail"/>
+                            <label class="form-label" for="form2Example11">Usuário</label>
+                            <input type="text" id="login" class="form-control" placeholder="Número de telefone ou endereço de e-mail"/>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <i class="fa fa-check-circle"></i>
+                            <small>Mensagem de erro</small>
                         </div>
                         <div class="form-outline mb-3">
-                          <label class="form-label" for="form2Example22">Senha</label>
-                          <input type="password" id="form2Example22" class="form-control"/>
+                            <label class="form-label" for="form2Example22">Senha</label>
+                            <input type="password" id="senha" class="form-control"/>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <i class="fa fa-check-circle"></i>
+                            <small>Mensagem de erro</small>
                         </div>
                         <div class="text-center pt-1 mb-4 pb-1">
-                          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-2" style="width: 100%" type="button">Login</button>
-                          <div class="mt-1">
-                            <a class="text-muted" href="home.html#idcontact" target="_self">Esqueceu a senha?</a>
-                          </div>
+                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-2" style="width: 100%" type="submit">Login</button>
+                            <div class="mt-1">
+                                <a class="text-muted" href="home.html#idcontact" target="_self">Esqueceu a senha?</a>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center pb-3">
-                          <p class="mb-0 me-2">Não tem uma conta?</p>
-                          <a href="cadastro.html" target="_self"><button type="button" class="btn btn-gradient-purple  px-3 me-sm-3 ">Criar nova</button></a>
+                            <p class="mb-0 me-2">Não tem uma conta?</p>
+                            <a href="cadastro.html" target="_self"><button type="button" class="btn btn-gradient-purple px-3 me-sm-3">Criar nova</button></a>
                         </div>
-                      </form>
+                    
                   </div>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
@@ -155,5 +162,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="login1.js"></script>
   </body>
 </html>

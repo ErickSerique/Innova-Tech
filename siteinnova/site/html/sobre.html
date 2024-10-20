@@ -13,7 +13,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"/>
     <link rel="stylesheet" href="../css/sobre.css"/>
-    <title>Sobre nos</title>
+    <title>Sobre Nós</title>
   </head>
   <body>
     <nav
@@ -44,13 +44,13 @@
               <a class="nav-link active" aria-current="page" href="home.html" target="_self">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="home.html#Link_Services" target="_self">Cursos</a>
+              <a class="nav-link active" href="home.html#idservice" target="_self">Cursos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="sobre.html" target="_self">Sobre Nós</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Contatos</a>
+              <a class="nav-link active" href="home.html#idcontact" target="_self">Contatos</a>
             </li>
           </ul>
 
@@ -64,21 +64,21 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="idevent"> <!--Local de Redirecionamento-->
       <h1 class="section-heading text-uppercase border-bottom text-center" style="font-size: 4em; margin-top: 100px">Eventos</h1>
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../fotos home/Certificado Innova.jpg" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="...">
-            <p class="text-center">InnovaTech</p>
+            <img src="../fotos home/Certificado Innova.jpg" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="Dia da criação da Innova Technology">
+            <p class="text-center">16/04/2024 - Criação da Innova Technology</p>
           </div>
           <div class="carousel-item">
-            <img src="../fotos home/Aulas de ia.png" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="...">
-            <p class="text-center">Inteligência Artificial</p>
+            <img src="../fotos home/Aulas de ia.png" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="Dia da primeira aula do curso de Inteligência Artificial">
+            <p class="text-center">11/05/2024 - Primeira aula de Inteligência Artificial</p>
           </div>
           <div class="carousel-item">
-            <img src="../fotos home/Apresentando o Site.jpg" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="...">
-            <p class="text-center">Projeto Site</p>
+            <img src="../fotos home/Apresentando o Site.jpg" class="d-block mx-auto" style="width: 1000px; height: 600px;" alt="Dia da apresentação do projeto inicial do site">
+            <p class="text-center">01/10/2024 - Apresentação do projeto do Site</p>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <section class="pri page-section" id="team">
+    <section class="pri page-section" id="idteam"> <!--Local de Redirecionamento-->
       <div class="container">
         <div class="text-center">
           <h1 class="section-heading text-uppercase border-bottom" style="font-size: 4em">Nossa Equipe</h1>
@@ -518,24 +518,23 @@
           <div class="col-md-2">
             <h5>Principais Links</h5>
             <ul>
-              <li><a href="home.html" target="_self">Home</a></li>
-              <li><a href="home.html#Link_Services" target="_self">Serviços</a></li>
+              <li><a href="home.html#idhome" target="_self">Home</a></li>
+              <li><a href="home.html#idservice" target="_self">Serviços</a></li>
               <li><a href="sobre.html" target="_self">Sobre Nós</a></li>
-              <li><a href="#">Suporte</a></li>
-              <li><a href="#">Termos & Condições</a></li>
+              <li><a href="termos.html" target="_self">Termos & Condições</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Comunidade</h5>
             <ul>
-              <li><a href="#">Contato</a></li>
-              <li><a href="#">Eventos</a></li>
+              <li><a href="home.html#idcontact" target="_self">Suporte</a></li>
+              <li><a href="sobre.html#idevent" target="_self">Eventos</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Parceiros</h5>
             <ul>
-              <li><a href="sobre.html">Nossa Equipe</a></li>
+              <li><a href="sobre.html#idteam" target="_self">Nossa Equipe</a></li>
             </ul>
           </div>
           <div class="border-top">

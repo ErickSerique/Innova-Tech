@@ -109,14 +109,16 @@ body {
 }
 
 .nav-item {
-  margin-left: 40px;
+  margin-left: 30px;
   font-size: 18px;
 }
 
 .nav-item1 {
-  margin-left: 1000px;
+  margin-left: 20px;
+  margin-right: auto;
   font-size: 18px;
 }
+
 .gradient-custom-2 {
   background: linear-gradient(to right, #8e2de2, #4a00e0);
   border: none;

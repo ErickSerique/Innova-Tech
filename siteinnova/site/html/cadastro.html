@@ -73,7 +73,7 @@
               <div class="card" style="border-radius: 15px">
                 <div class="card-body p-4">
                   <h2 class="text-uppercase text-center mb-4">Criar uma conta</h2>
-                  <form action="../processos_db/processa_registro.php" method="POST" id="formCadastro">
+                  <form action="" method="POST" id="formCadastro">
                     <div data-mdb-input-init class="form-outline mb-3">
                       <label class="form-label" for="form3Example1cg">Nome</label>
                       <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nome"/>
@@ -97,9 +97,7 @@
                     <div class="form-check d-flex justify-content-center mb-4">
                       <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"/>
                       <label class="form-check-label" for="form2Example3g">
-                        
-                        <a>Eu concordo com todos os termos em</a> 
-                        <a data-bs-toggle="modal"data-bs-target="#exampleModal" href=""><u>Termos de serviço</u></a>
+                        <p>Eu concordo com todos os termos em <a href="termos.html" target="_self"><u>Termos & Condições</u></a>
                       </label>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -173,5 +171,16 @@
       crossorigin="anonymous">
     </script>
     <script src="resposta_cadastro.js"></script>
+
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
   </body>
 </html>

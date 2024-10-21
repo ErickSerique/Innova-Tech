@@ -120,10 +120,11 @@ body {
 
 .py-5 {
   margin-top: 75px;
-  background-image: url("https://images.pexels.com/photos/26587611/pexels-photo-26587611/free-photo-of-aurora-magenta-sobre-floresta-de-pinheiros.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-image: url("https://tse3.mm.bing.net/th?id=OIG2.OGOH7JWjyXUVYhs94TWX&pid=ImgGn");
   background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
   background-position: center; /* Centraliza a imagem */
+  height: 400px;
 }
 
 .navbar {

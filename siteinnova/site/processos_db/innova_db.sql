@@ -10,5 +10,4 @@ CREATE TABLE IF NOT EXISTS mensagem_suporte(
 nome VARCHAR(60) NOT NULL,
 email varchar(45) NOT NULL,
 telefone INT(11),
-empresa VARCHAR(60),
 mensagem VARCHAR(600));

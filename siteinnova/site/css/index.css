@@ -5,6 +5,7 @@ body {
   background-repeat: no-repeat; /* Evita que a imagem se repita */
   background-position: center; /* Centraliza a imagem */
   color: white;
+  zoom: 94%;
 }
 .btn-gradient-purple {
   background: linear-gradient(to right, #8e2de2, #4a00e0);

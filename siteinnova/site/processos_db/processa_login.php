@@ -5,29 +5,22 @@ session_start();
 // Incluir o arquivo de conexão
 include 'db_connect.php';
 
-try {
-    // Conexão usando PDO
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    die("Erro ao conectar com o banco de dados: " . $e->getMessage());
-}
-
 // Verifica se o método é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Sanitização de entrada
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $senha = trim($_POST['senha']);
-
-    // Validação do email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Formato de email inválido.";
-        exit();
-    }
-
-    // Preparar a consulta SQL
-    $sql = "SELECT senha FROM usuario WHERE email = :email";
-    
     try {
+        // Sanitização de entrada
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $senha = trim($_POST['senha']);
+
+        // Validação do email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Formato de email inválido.";
+            exit();
+        }
+
+        // Preparar a consulta SQL
+        $sql = "SELECT senha FROM usuario WHERE email = :email";
+        
         // Preparar o statement
         $stmt = $pdo->prepare($sql);
         
@@ -53,4 +46,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-

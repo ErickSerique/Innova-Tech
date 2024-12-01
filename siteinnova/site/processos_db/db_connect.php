@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db = 'innova_db';
 $user = 'root';
-$pass = '123345';
+$pass = '0106@waterK';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

@@ -1,30 +1,41 @@
 <?php
-include 'db_connect.php';  // Conexão com o banco
+include 'db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Sanitize inputs
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $assunto = mysqli_real_escape_string($conn, $_POST['assunto']);
-    $mensagem = mysqli_real_escape_string($conn, $_POST['mensagem']);
+    $nome = trim(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING));
+    $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $assunto = trim(filter_input(INPUT_POST, 'assunto', FILTER_SANITIZE_STRING));
+    $mensagem = trim(filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING));
 
-    // Preparar e executar a query usando mysqli
-    $stmt = $conn->prepare("INSERT INTO mensagem_suporte (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)");
-    
-    if ($stmt) {
+    if (empty($nome) || empty($email) || empty($assunto) || empty($mensagem)) {
+        echo "Todos os campos são obrigatórios.";
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Formato de email inválido.";
+        exit;
+    }
+
+    try {
+        $stmt = $conn->prepare("INSERT INTO mensagem_suporte (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)");
+
         $stmt->bind_param("ssss", $nome, $email, $assunto, $mensagem);
 
         if ($stmt->execute()) {
             echo "Mensagem enviada com sucesso!";
         } else {
-            echo "Erro ao enviar a mensagem: " . $stmt->error;
+            throw new Exception("Erro ao enviar a mensagem: " . $stmt->error);
         }
-
-        $stmt->close();
-    } else {
-        echo "Erro na preparação do statement: " . $conn->error;
+    } catch (Exception $e) {
+        echo "Erro: " . $e->getMessage();
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
     }
 }
-
-mysqli_close($conn);
 ?>

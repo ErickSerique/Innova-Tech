@@ -1,11 +1,11 @@
 <?php
-$host = 'localhost';
+$servername = 'localhost';
 $db = 'innova_db';
-$user = 'root';
-$pass = '0106@waterK';
+$username = 'root';
+$password = '0106@waterK';
 $charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$conn = mysqli_connect($servername, $db, $username, $password)
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

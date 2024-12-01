@@ -1,10 +1,17 @@
 CREATE DATABASE IF NOT EXISTS innova_db;
 USE innova_db;
 
-CREATE TABLE IF NOT EXISTS usuario(
-nome VARCHAR(60) NOT NULL,
-email VARCHAR(45) NOT NULL,
-senha VARCHAR(65) NOT NULL);
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') DEFAULT 'user',
+    status ENUM('active', 'inactive') DEFAULT 'active',
+    ultimo_login TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
 CREATE TABLE IF NOT EXISTS mensagem_suporte(
 nome VARCHAR(60) NOT NULL,

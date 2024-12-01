@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";  // Your MySQL username
-$password = "Fruta321!";      // Your MySQL password
+$password = "";      // Your MySQL password
 $dbname = "innova_db";  // Your database name
 
 try {

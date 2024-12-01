@@ -1,7 +1,7 @@
 <?php
 $servername = 'localhost';
 $db = 'innova_db';
-$username = 'root';
+$username = 'MySQL XAMPP';
 $password = '0106@waterK';
 $charset = 'utf8mb4';
 

@@ -3,11 +3,11 @@
 $servername = 'localhost';
 $db = 'innova_db';
 $username = 'root';
-$password = '0106@waterK';
+$password = '';
 $charset = 'utf8mb4';
 
 // Create a mysqli connection
-$conn = mysqli_connect($servername, $username, $password, $db);
+$conn = mysqli_connect($servername, $db, $username, $password, $charset);
 
 // Check connection
 if (!$conn) {

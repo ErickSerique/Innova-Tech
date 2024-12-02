@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="../fotos home/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <!--Início NavBar-->
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body"
       data-bs-theme="dark">
@@ -63,6 +64,8 @@
         </div>
       </div>
     </nav>
+    <!--Fim NavBar-->
+
     <section class="vh-75 bg-image" style="background-image: url('')">
       <div class="mask d-flex align-items-center h-75 gradient-custom-3">
         <div class="container h-100">
@@ -73,20 +76,21 @@
               <div class="card" style="border-radius: 15px">
                 <div class="card-body p-4">
                   <h2 class="text-uppercase text-center mb-4">Criar uma conta</h2>
+                  <!--Formulário de Cadastro-->
                   <form action="../processos_db/processa_registro.php" method="POST" id="formCadastro">
                     <div data-mdb-input-init class="form-outline mb-3">
                       <label class="form-label" for="form3Example1cg">Nome</label>
-                      <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nome"/>
+                      <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nome" required/>
                       <div id="nameError" class="error-message" style="color: red; display: none;">O nome é obrigatório.</div>
                     </div>
                     <div data-mdb-input-init class="form-outline mb-3">
                       <label class="form-label" for="form3Example3cg">Email</label>
-                      <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email"/>
+                      <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email" required/>
                       <div id="emailError" class="error-message" style="color: red; display: none;">Por favor, insira um email válido.</div>
                     </div>
                     <div data-mdb-input-init class="form-outline mb-3">
                       <label class="form-label" for="form3Example4cg">Senha</label>
-                      <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="senha"/>
+                      <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="senha" required/>
                       <div id="passwordError" class="error-message" style="color: red; display: none;">A senha deve ter pelo menos 6 caracteres.</div>
                     </div>
                     <div data-mdb-input-init class="form-outline mb-3">
@@ -118,7 +122,9 @@
         </div>
       </div>
     </section>
+    <!--Fim do Formulário de Cadastro-->
 
+    <!--Rodapé-->
     <footer class="footer">
       <div class="container">
         <div class="row">

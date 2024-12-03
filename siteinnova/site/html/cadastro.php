@@ -23,25 +23,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $message = "<p style='color: red;'>Formato de email inválido.</p>";
         } else {
-            // Gera hash da senha
-            $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+            // Verifica se o email já está cadastrado
+            $sql_check = "SELECT COUNT(*) FROM usuario WHERE email = :email";
+            $stmt_check = $pdo->prepare($sql_check);
+            $stmt_check->execute([':email' => $email]);
+            $exists = $stmt_check->fetchColumn();
 
-            // Prepara a query de inserção
-            $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
-            $stmt = $pdo->prepare($sql);
+            if ($exists > 0) {
+                $message = "<p style='color: red;'>Este email já está cadastrado.</p>";
+            } else {
+                // Gera hash da senha
+                $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-            // Executa a query
-            $stmt->execute([':nome' => $nome, ':email' => $email, ':senha' => $senha_hashed]);
+                // Prepara a query de inserção
+                $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
+                $stmt = $pdo->prepare($sql);
 
-            $message = "<p style='color: green;'>Registro bem-sucedido!</p>";
+                // Executa a query
+                $stmt->execute([':nome' => $nome, ':email' => $email, ':senha' => $senha_hashed]);
+
+                $message = "<p style='color: green;'>Registro bem-sucedido!</p>";
+            }
         }
     } catch (PDOException $e) {
-        // Tratamento de erro
-        if ($e->getCode() == '23000') {
-            $message = "<p style='color: red;'>Este email já está cadastrado.</p>";
-        } else {
-            $message = "<p style='color: red;'>Erro ao registrar: {$e->getMessage()}</p>";
-        }
+        $message = "<p style='color: red;'>Erro ao registrar: {$e->getMessage()}</p>";
     } catch (Exception $e) {
         $message = "<p style='color: red;'>{$e->getMessage()}</p>";
     }
@@ -166,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </p>
                   </form>
                   <div class="<?= $message_class ?> text-center h4">
-                   <?= $message ?>
+                   <?= $message; ?>
                   </div>
                 </div>
               </div>

@@ -4,38 +4,37 @@ const login = document.getElementById("login");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    checkInputs();
+    if (checkInputs()) {
+        form.submit(); // Envia o formulário se as validações forem concluídas
+    }
 });
 
 function checkInputs() {
-    const loginValue = login.value;
-    const senhaValue = senha.value;
+    const loginValue = login.value.trim();
+    const senhaValue = senha.value.trim();
+    let isValid = true;
 
     if (loginValue === "") {
-        setErrorFor(login, "O nome de login é obrigatório.");
-    } else if (loginValue.length < 6) {
-        setErrorFor(login, "O login precisa ser maior que 6 caracteres.");
+        setErrorFor(login, "O email é obrigatório.");
+        isValid = false;
+    } else if (!checkEmail(loginValue)) {
+        setErrorFor(login, "Formato de email inválido.");
+        isValid = false;
     } else {
         setSuccessFor(login);
     }
 
     if (senhaValue === "") {
         setErrorFor(senha, "A senha é obrigatória.");
+        isValid = false;
     } else if (senhaValue.length < 6) {
         setErrorFor(senha, "A senha precisa ter no mínimo 6 caracteres.");
+        isValid = false;
     } else {
         setSuccessFor(senha);
     }
 
-    const formControls = form.querySelectorAll(".form-outline");
-    const formIsValid = [...formControls].every((formControl) => {
-        return formControl.className === "form-outline success";
-    });
-
-    if (formIsValid) {
-        console.log("O formulário está 100% válido!");
-        window.location.href = "";
-    }
+    return isValid; // Retorna true apenas se todos os campos forem válidos
 }
 
 function setErrorFor(input, message) {
@@ -51,6 +50,6 @@ function setSuccessFor(input) {
 }
 
 function checkEmail(email) {
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 

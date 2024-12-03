@@ -1,3 +1,52 @@
+<?php
+// Inclui o arquivo de conexão
+include '../processos_db/db_connect.php'; // Ajuste o caminho conforme necessário
+
+// Inicializa mensagem
+$message = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    try {
+        // Sanitização de entrada
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $senha = trim($_POST['senha']);
+
+        // Validação do email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $message = "<p style='color: red;'>Formato de email inválido.</p>";
+        } else {
+            // Preparar a consulta SQL
+            $sql = "SELECT nome, senha FROM usuario WHERE email = :email";
+
+            // Preparar o statement
+            $stmt = $pdo->prepare($sql);
+
+            // Executar o statement
+            $stmt->execute([':email' => $email]);
+
+            // Verificar se o usuário foi encontrado
+            if ($row = $stmt->fetch()) {
+                // Verificar a senha
+                if (password_verify($senha, $row['senha'])) {
+                    // Login bem-sucedido
+                    session_start();
+                    $_SESSION['nome'] = $row['nome']; // Salva o nome do usuário na sessão
+                    $message = "<p style='color: green;'>Bem-vindo, " . htmlspecialchars($row['nome']) . "!</p>";
+                    header("Location: dashboard.php"); // Redireciona para o dashboard ou outra página
+                    exit;
+                } else {
+                    $message = "<p style='color: red;'>Senha incorreta.</p>";
+                }
+            } else {
+                $message = "<p style='color: red;'>Nenhum usuário encontrado com esse email.</p>";
+            }
+        }
+    } catch (PDOException $e) {
+        $message = "<p style='color: red;'>Erro ao consultar o banco de dados: " . $e->getMessage() . "</p>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -73,19 +122,25 @@
                           alt="logo"/>
                         <h4 class="mt-1 mb-5 pb-1">Nós somos a <strong>InnovaTech</strong></h4>
                       </div>
+                      <?php
+                        // Exibir a mensagem de erro ou sucesso
+                        if (!empty($message)) {
+                            echo "<div class='message'>$message</div>";
+                        }
+                      ?>
                       <!--Início Formulário-->
-                      <form action="../processos_db/processa_login.php" method="POST" id="form">
+                      <form action="./login.php" method="POST" id="form">
                         <p>Faça o seu Login:</p>
                         <div class="form-outline mb-3">
-                            <label class="form-label" for="form2Example11">Usuário</label>
-                            <input type="email" id="login" class="form-control" placeholder="Número de telefone ou endereço de e-mail"/>
+                            <label class="form-label" for="form2Example11">E-Mail</label>
+                            <input type="email" id="login" class="form-control" name="email" required/>
                             <i class="fa fa-exclamation-circle"></i>
                             <i class="fa fa-check-circle"></i>
                             <small>Mensagem de erro</small>
                         </div>
                         <div class="form-outline mb-3">
                             <label class="form-label" for="form2Example22">Senha</label>
-                            <input type="password" id="senha" class="form-control"/>
+                            <input type="password" id="senha" class="form-control" name="senha"/>
                             <i class="fa fa-exclamation-circle"></i>
                             <i class="fa fa-check-circle"></i>
                             <small>Mensagem de erro</small>
@@ -102,6 +157,10 @@
                         </div>
                       </form>
                       <!--Fim Formulário-->
+                      <div class="text-center">
+                        <?= $message; // Exibe a mensagem ?>
+                      </div>
+
                   </div>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center gradient-custom-2">

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     session_start();
                     $_SESSION['nome'] = $row['nome']; // Salva o nome do usuário na sessão
                     $message = "<p style='color: green;'>Bem-vindo, " . htmlspecialchars($row['nome']) . "!</p>";
-                    header("Location: login.php"); // REDIRECIONAMENTO APÓS LOGIN
+                    header("Location: index.php"); // REDIRECIONAMENTO APÓS LOGIN
                     exit;
                 } else {
                     $message = "<p style='color: red;'>Senha incorreta.</p>";

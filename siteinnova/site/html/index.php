@@ -130,7 +130,7 @@ $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : 
             <?=$nomeUsuario?>
           </button>
           <ul1 class="dropdown-menu dropdown-menu-dark">
-            <li1><a1 href="./logout.php"><button class="dropdown-item" type="button10"></a1>SAIR</button></a1></li1>
+            <li1><a1 href="./logout.php"><button class="dropdown-item" type="button10"></a1>Saindo legal </button></a1></li1>
           </ul1>
         </div>
             

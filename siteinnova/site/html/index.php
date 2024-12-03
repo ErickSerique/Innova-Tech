@@ -2,6 +2,13 @@
 include '../processos_db/db_connect.php'; // Inclui a conexão com o banco de dados
 
 $mensagem = ''; // Inicializa a variável para feedback do formulário
+session_start(); // Inicie a sessão no início do arquivo
+include '../processos_db/db_connect.php'; // Inclui a conexão com o banco de dados 
+
+$mensagem = ''; // Inicializa a variável para feedback do formulário 
+
+// Verifique se o usuário está logado
+$isLoggedIn = isset($_SESSION['nome']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitiza os dados recebidos

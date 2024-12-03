@@ -1,6 +1,7 @@
 <?php
 // Inclui o arquivo de conexão
 include '../processos_db/db_connect.php'; // Ajuste o caminho conforme necessário
+session_start(); // Adicione isso no início do arquivo
 
 // Inicializa mensagem
 $message = "";

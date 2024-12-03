@@ -1,3 +1,53 @@
+<?php
+// Inclui a conexão ao banco de dados
+include '../processos_db/db_connect.php'; // Ajuste o caminho conforme necessário
+
+// Inicializa mensagem e classe
+$message = "";
+$message_class = "hidden";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $message_class = ""; // Exibe a mensagem após o envio
+    try {
+        // Verifica se a conexão foi bem-sucedida
+        if (!isset($pdo)) {
+            throw new Exception("Conexão com o banco de dados não foi estabelecida.");
+        }
+
+        // Sanitiza os dados do formulário
+        $nome = filter_var(trim($_POST['nome']), FILTER_SANITIZE_STRING);
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $senha = trim($_POST['senha']);
+
+        // Valida o email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $message = "<p style='color: red;'>Formato de email inválido.</p>";
+        } else {
+            // Gera hash da senha
+            $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+
+            // Prepara a query de inserção
+            $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
+            $stmt = $pdo->prepare($sql);
+
+            // Executa a query
+            $stmt->execute([':nome' => $nome, ':email' => $email, ':senha' => $senha_hashed]);
+
+            $message = "<p style='color: green;'>Registro bem-sucedido!</p>";
+        }
+    } catch (PDOException $e) {
+        // Tratamento de erro
+        if ($e->getCode() == '23000') {
+            $message = "<p style='color: red;'>Este email já está cadastrado.</p>";
+        } else {
+            $message = "<p style='color: red;'>Erro ao registrar: {$e->getMessage()}</p>";
+        }
+    } catch (Exception $e) {
+        $message = "<p style='color: red;'>{$e->getMessage()}</p>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -21,7 +71,7 @@
       class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body"
       data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html" target="_self">
+        <a class="navbar-brand" href="index.php" target="_self">
           <img
             src="../fotos home/logo1.png"
             alt="Avatar Logo"
@@ -42,24 +92,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item1">
-              <a class="nav-link active" aria-current="page" href="index.html" target="_self">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.php" target="_self">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.html#idservice" target="_self">Cursos</a>
+              <a class="nav-link active" href="index.php#idservice" target="_self">Cursos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="sobre.html" target="_self">Sobre Nós</a>
+              <a class="nav-link active" href="sobre.php" target="_self">Sobre Nós</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.html#idcontact" target="_self">Contatos</a>
+              <a class="nav-link active" href="index.php#idcontact" target="_self">Contatos</a>
             </li>
           </ul>
 
           <div class="button-borders">
-            <a href="login.html" target="_self"><button class="primary-button">LOGIN</button></a>
+            <a href="login.php" target="_self"><button class="primary-button">LOGIN</button></a>
           </div>
           <div class="button-borders">
-            <a href="cadastro.html" target="_self"><button class="primary-button">CADASTRO</button></a>
+            <a href="cadastro.php" target="_self"><button class="primary-button">CADASTRO</button></a>
           </div>
         </div>
       </div>
@@ -77,7 +127,7 @@
                 <div class="card-body p-4">
                   <h2 class="text-uppercase text-center mb-4">Criar uma conta</h2>
                   <!--Formulário de Cadastro-->
-                  <form action="../processos_db/processa_registro.php" method="POST" id="formCadastro">
+                  <form action="./cadastro.php" method="POST" id="formCadastro">
                     <div data-mdb-input-init class="form-outline mb-3">
                       <label class="form-label" for="form3Example1cg">Nome</label>
                       <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nome" required/>
@@ -101,7 +151,7 @@
                     <div class="form-check d-flex justify-content-center mb-4">
                       <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"/>
                       <label class="form-check-label" for="form2Example3g">
-                        <p>Eu concordo com todos os termos em <a href="termos.html" target="_self"><u>Termos & Condições</u></a>
+                        <p>Eu concordo com todos os termos em <a href="termos.php" target="_self"><u>Termos & Condições</u></a>
                       </label>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -112,9 +162,12 @@
                     </div>
                     <p class="text-center text-muted mt-4 mb-0">
                       Já tem uma conta?
-                      <a href="login.html" class="fw-bold text-body"><u>Faça login aqui</u></a>
+                      <a href="login.php" class="fw-bold text-body"><u>Faça login aqui</u></a>
                     </p>
                   </form>
+                  <div class="<?= $message_class ?> text-center h4">
+                   <?= $message ?>
+                  </div>
                 </div>
               </div>
             </div>
@@ -135,23 +188,23 @@
           <div class="col-md-2">
             <h5>Principais Links</h5>
             <ul>
-              <li><a href="index.html#idhome" target="_self">Home</a></li>
-              <li><a href="index.html#idservice" target="_self">Serviços</a></li>
-              <li><a href="sobre.html" target="_self">Sobre Nós</a></li>
-              <li><a href="termos.html" target="_self">Termos & Condições</a></li>
+              <li><a href="index.php#idhome" target="_self">Home</a></li>
+              <li><a href="index.php#idservice" target="_self">Serviços</a></li>
+              <li><a href="sobre.php" target="_self">Sobre Nós</a></li>
+              <li><a href="termos.php" target="_self">Termos & Condições</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Comunidade</h5>
             <ul>
-              <li><a href="index.html#idcontact" target="_self">Suporte</a></li>
-              <li><a href="sobre.html#idevent" target="_self">Eventos</a></li>
+              <li><a href="index.php#idcontact" target="_self">Suporte</a></li>
+              <li><a href="sobre.php#idevent" target="_self">Eventos</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Parceiros</h5>
             <ul>
-              <li><a href="sobre.html#team" target="_self">Nossa Equipe</a></li>
+              <li><a href="sobre.php#team" target="_self">Nossa Equipe</a></li>
             </ul>
           </div>
           <div class="border-top">

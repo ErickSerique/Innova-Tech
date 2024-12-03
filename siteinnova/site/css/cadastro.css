@@ -41,6 +41,10 @@ body {
   height: 40px;
 }
 
+.hidden{
+  color: #ffffff;
+}
+
 .primary-button:hover {
   color: white;
   background-position: 40%;

@@ -3,7 +3,7 @@
 session_start();
 
 // Incluir o arquivo de conexão
-include 'db_connect.php';
+include './db_connect.php';
 
 // Verifica se o método é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

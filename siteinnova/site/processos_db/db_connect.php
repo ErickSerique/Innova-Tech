@@ -1,20 +1,19 @@
 <?php
-$servername = "localhost";
-$username = "root";  // Your MySQL username
-$password = "Fruta321!";      // Your MySQL password
-$dbname = "innova_db";  // Your database name
+$host = 'localhost'; // Endereço do servidor do banco de dados
+$db = 'innova_db'; // Nome do banco de dados
+$user = 'root'; // Usuário do banco de dados
+$pass = '1233'; // Senha do banco de dados
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Para exibir erros como exceções
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Modo padrão de fetch
+    PDO::ATTR_EMULATE_PREPARES => false, // Prepara as queries no lado do servidor
+];
 
 try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        throw new Exception("Conexão falhou: " . $conn->connect_error);
-    }
-
-    // Set charset to ensure proper handling of special characters
-    $conn->set_charset("utf8mb4");
-
-} catch (Exception $e) {
-    die("Erro de conexão ao banco de dados " . $e->getMessage());
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
-?>

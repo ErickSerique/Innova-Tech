@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     session_start();
                     $_SESSION['nome'] = $row['nome']; // Salva o nome do usuário na sessão
                     $message = "<p style='color: green;'>Bem-vindo, " . htmlspecialchars($row['nome']) . "!</p>";
-                    header("Location: dashboard.php"); // Redireciona para o dashboard ou outra página
+                    header("Location: login.php"); // REDIRECIONAMENTO APÓS LOGIN
                     exit;
                 } else {
                     $message = "<p style='color: red;'>Senha incorreta.</p>";
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>Faça o seu Login:</p>
                         <div class="form-outline mb-3">
                             <label class="form-label" for="form2Example11">E-Mail</label>
-                            <input type="email" id="login" class="form-control" name="email" required/>
+                            <input type="email" id="login" class="form-control" name="email"/>
                             <i class="fa fa-exclamation-circle"></i>
                             <i class="fa fa-check-circle"></i>
                             <small>Mensagem de erro</small>
@@ -157,9 +157,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                       </form>
                       <!--Fim Formulário-->
-                      <div class="text-center">
-                        <?= $message; // Exibe a mensagem ?>
-                      </div>
 
                   </div>
                 </div>

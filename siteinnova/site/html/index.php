@@ -61,6 +61,20 @@ echo json_encode(['success' => true]);
     <link rel="stylesheet" href="../css/index.css"/>
     <title>Innova Technology</title>
     <link rel="shortcut icon" href="../fotos home/favicon.ico" type="image/x-icon">
+    <style>
+        .social-icons {
+          display: flex; /* Usar flexbox para alinhar os itens */
+          justify-content: center; /* Centraliza os ícones horizontalmente */
+          margin-top: 10px; /* Espaçamento superior, se necessário */
+        }
+
+        .social-icons a {
+          display: inline-block; /* Garante que os ícones sejam tratados como blocos */
+          border-radius: 50%; /* Faz com que os ícones fiquem em formato de bolinha */
+          padding: 10px; /* Espaçamento interno */
+          text-align: center; /* Centraliza o conteúdo dentro da bolinha */
+        }
+    </style>
   </head>
   <body>
     <!--Início NavBar-->

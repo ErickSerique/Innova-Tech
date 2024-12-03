@@ -1,3 +1,42 @@
+<?php
+include '../processos_db/db_connect.php'; // Inclui a conexão com o banco de dados
+
+$mensagem = ''; // Inicializa a variável para feedback do formulário
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Sanitiza os dados recebidos
+    $nome = trim(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING));
+    $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $assunto = trim(filter_input(INPUT_POST, 'assunto', FILTER_SANITIZE_STRING));
+    $mensagemTexto = trim(filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING));
+
+    // Validação básica
+    if (empty($nome) || empty($email) || empty($assunto) || empty($mensagemTexto)) {
+        $mensagem = "Todos os campos são obrigatórios.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mensagem = "Formato de email inválido.";
+    } else {
+        try {
+            // Prepara a inserção no banco
+            $stmt = $pdo->prepare("INSERT INTO mensagem_suporte (nome, email, assunto, mensagem) VALUES (:nome, :email, :assunto, :mensagem)");
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':assunto', $assunto);
+            $stmt->bindParam(':mensagem', $mensagemTexto);
+
+            // Executa e verifica o resultado
+            if ($stmt->execute()) {
+                $mensagem = "Mensagem enviada com sucesso!";
+            } else {
+                $mensagem = "Erro ao enviar a mensagem. Tente novamente.";
+            }
+        } catch (Exception $e) {
+            $mensagem = "Erro ao conectar ao banco de dados: " . $e->getMessage();
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -214,7 +253,7 @@
 		<div class="row">
 			<div class="col-lg-7">	
 				<div class="contact">
-					<form class="form" name="enq" method="post" action="../processos_db/processa_msgsuporte.php">
+					<form class="form" name="enq" method="post" action="./index.php#idcontact">
 						<div class="row">
 							<div class="form-group col-md-6">
 								<input id = "nome" type="text" name="nome" class="form-control" placeholder="Nome" required="required">
@@ -260,6 +299,11 @@
 		</div><!--- END ROW -->
 	</div><!--- END CONTAINER -->	
 </div>
+<?php if (!empty($mensagem)): ?>
+    <div class="alert alert-info text-center">
+        <?= htmlspecialchars($mensagem); ?>
+    </div>
+<?php endif; ?>
   <!--Fim Contatos-->
 
   <!--Início Rodapé-->

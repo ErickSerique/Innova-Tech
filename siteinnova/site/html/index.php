@@ -2,13 +2,6 @@
 include '../processos_db/db_connect.php'; // Inclui a conexão com o banco de dados
 
 $mensagem = ''; // Inicializa a variável para feedback do formulário
-session_start(); // Inicie a sessão no início do arquivo
-include '../processos_db/db_connect.php'; // Inclui a conexão com o banco de dados 
-
-$mensagem = ''; // Inicializa a variável para feedback do formulário 
-
-// Verifique se o usuário está logado
-$isLoggedIn = isset($_SESSION['nome']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitiza os dados recebidos
@@ -65,41 +58,7 @@ $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : 
   </head>
   <body>
     <!--Início NavBar-->
-    <nav
-      class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body"
-      data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">
-          <img src="../fotos home/logo1.png" alt="Avatar Logo" style="width:50px" style="margin-left: 50px;"> 
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item1">
-              <a class="nav-link active" aria-current="page" href="index.php" target="_self">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="index.php#idservice" target="_self">Cursos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="sobre.php" target="_self">Sobre Nós</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="index.php#idcontact" target="_self">Contatos</a>
-            </li>
-          </ul>
-
-          <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">
       <img src="../fotos home/logo1.png" alt="Avatar Logo" style="width: 50px" style="margin-left: 50px"/>

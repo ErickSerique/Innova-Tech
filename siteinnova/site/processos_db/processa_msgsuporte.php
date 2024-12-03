@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'db_connect.php'; // Inclui o arquivo com $pdo
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = trim(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING));
@@ -18,24 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     try {
-        $stmt = $conn->prepare("INSERT INTO mensagem_suporte (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)");
-
-        $stmt->bind_param("ssss", $nome, $email, $assunto, $mensagem);
+        // Ajustar para PDO
+        $stmt = $pdo->prepare("INSERT INTO mensagem_suporte (nome, email, assunto, mensagem) VALUES (:nome, :email, :assunto, :mensagem)");
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':assunto', $assunto);
+        $stmt->bindParam(':mensagem', $mensagem);
 
         if ($stmt->execute()) {
             echo "Mensagem enviada com sucesso!";
         } else {
-            throw new Exception("Erro ao enviar a mensagem: " . $stmt->error);
+            throw new Exception("Erro ao enviar a mensagem.");
         }
     } catch (Exception $e) {
         echo "Erro: " . $e->getMessage();
-    } finally {
-        if (isset($stmt)) {
-            $stmt->close();
-        }
-        if (isset($conn)) {
-            $conn->close();
-        }
     }
 }
 ?>

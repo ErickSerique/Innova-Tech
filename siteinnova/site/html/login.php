@@ -25,7 +25,7 @@
     <!--Início NavBar-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <img src="../fotos home/logo1.png" alt="Avatar Logo" style="width: 50px" style="margin-left: 50px"/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
@@ -34,24 +34,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item1">
-              <a class="nav-link active" aria-current="page" href="index.html" target="_self">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.php" target="_self">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.html#idservice" target="_self">Cursos</a>
+              <a class="nav-link active" href="index.php#idservice" target="_self">Cursos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="sobre.html" target="_self">Sobre Nós</a>
+              <a class="nav-link active" href="sobre.php" target="_self">Sobre Nós</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.html#idcontact" target="_self">Contatos</a>
+              <a class="nav-link active" href="index.php#idcontact" target="_self">Contatos</a>
             </li>
           </ul>
 
           <div class="button-borders">
-            <a href="login.html" target="_self"><button class="primary-button">LOGIN</button></a>
+            <a href="login.php" target="_self"><button class="primary-button">LOGIN</button></a>
           </div>
           <div class="button-borders">
-            <a href="cadastro.html" target="_self"><button class="primary-button">CADASTRO</button></a>
+            <a href="cadastro.php" target="_self"><button class="primary-button">CADASTRO</button></a>
           </div>
         </div>
       </div>
@@ -93,12 +93,12 @@
                         <div class="text-center pt-1 mb-4 pb-1">
                             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-2" style="width: 100%" type="submit">Login</button>
                             <div class="mt-1">
-                                <a class="text-muted" href="index.html#idcontact" target="_self">Esqueceu a senha?</a>
+                                <a class="text-muted" href="index.php#idcontact" target="_self">Esqueceu a senha?</a>
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center pb-3">
                             <p class="mb-0 me-2">Não tem uma conta?</p>
-                            <a href="cadastro.html" target="_self"><button type="button" class="btn btn-gradient-purple px-3 me-sm-3">Criar nova</button></a>
+                            <a href="cadastro.php" target="_self"><button type="button" class="btn btn-gradient-purple px-3 me-sm-3">Criar nova</button></a>
                         </div>
                       </form>
                       <!--Fim Formulário-->
@@ -130,23 +130,23 @@
           <div class="col-md-2">
             <h5>Principais Links</h5>
             <ul>
-              <li><a href="index.html#idhome" target="_self">Home</a></li>
-              <li><a href="index.html#idservice" target="_self">Serviços</a></li>
-              <li><a href="sobre.html" target="_self">Sobre Nós</a></li>
-              <li><a href="termos.html" target="_self">Termos & Condições</a></li>
+              <li><a href="index.php#idhome" target="_self">Home</a></li>
+              <li><a href="index.php#idservice" target="_self">Serviços</a></li>
+              <li><a href="sobre.php" target="_self">Sobre Nós</a></li>
+              <li><a href="termos.php" target="_self">Termos & Condições</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Comunidade</h5>
             <ul>
-              <li><a href="index.html#idcontact" target="_self">Suporte</a></li>
-              <li><a href="sobre.html#idevent" target="_self">Eventos</a></li>
+              <li><a href="index.php#idcontact" target="_self">Suporte</a></li>
+              <li><a href="sobre.php#idevent" target="_self">Eventos</a></li>
             </ul>
           </div>
           <div class="col-md-2">
             <h5>Parceiros</h5>
             <ul>
-              <li><a href="sobre.html#idteam" target="_self">Nossa Equipe</a></li>
+              <li><a href="sobre.php#idteam" target="_self">Nossa Equipe</a></li>
             </ul>
           </div>
           <div class="border-top">

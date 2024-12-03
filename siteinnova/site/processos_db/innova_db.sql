@@ -2,12 +2,16 @@ CREATE DATABASE IF NOT EXISTS innova_db;
 USE innova_db;
 
 CREATE TABLE IF NOT EXISTS usuario(
+id_usuario INT NOT NULL AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(45) NOT NULL,
-senha VARCHAR(65) NOT NULL);
+senha VARCHAR(65) NOT NULL,
+PRIMARY KEY (id_usuario));
 
 CREATE TABLE IF NOT EXISTS mensagem_suporte(
+id_suporte INT NOT NULL AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
-email varchar(45) NOT NULL,
-assunto varchar(30),
-mensagem VARCHAR(600));
+email VARCHAR(45) NOT NULL,
+assunto VARCHAR(30) NOT NULL,
+mensagem VARCHAR(600) NOT NULL
+PRIMARY KEY (id_suporte));

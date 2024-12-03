@@ -1,6 +1,6 @@
 <?php
 // Incluir o arquivo de conexão
-include 'db_connect.php';
+include './db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {

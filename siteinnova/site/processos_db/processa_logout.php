@@ -9,11 +9,11 @@ if (isset($_SESSION['email'])) {
     session_destroy(); // Destroi a sessão
 
     // Opcional: Redirecionar para a página de login ou página principal
-    header('Location: login.html'); // Redireciona para a página de login
+    header('Location: login.php'); // Redireciona para a página de login
     exit(); // Para garantir que o script seja encerrado após o redirecionamento
 } else {
     // Se não há sessão ativa, redirecionar para a página de login
-    header('Location: login.html');
+    header('Location: login.php');
     exit();
 }
 ?>

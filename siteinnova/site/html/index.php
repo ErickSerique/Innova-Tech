@@ -35,6 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+//Caso o usuário esteja conectado em sua conta (Login)
+session_start();
+$nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : null;
 ?>
 
 <!DOCTYPE html>
@@ -88,12 +92,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </li>
           </ul>
 
-          <div class="button-borders">
-            <a href="login.php" target="_self"><button class="primary-button">LOGIN</button></a>
-          </div>
-          <div class="button-borders">
-            <a href="cadastro.php" target="_self"><button class="primary-button">CADASTRO</button></a>
-          </div>
+          <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.php">
+      <img src="../fotos home/logo1.png" alt="Avatar Logo" style="width: 50px" style="margin-left: 50px"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item1">
+          <a class="nav-link active" aria-current="page" href="index.php" target="_self">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="index.php#idservice" target="_self">Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="sobre.php" target="_self">Sobre Nós</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="index.php#idcontact" target="_self">Contatos</a>
+        </li>
+      </ul>
+
+      <?php if ($nomeUsuario): ?>
+        <!-- Botão personalizado com o nome do usuário -->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?=$nomeUsuario?>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="./logout.php"><button class="dropdown-item" type="button"></a>SAIR</button></a></li>
+          </ul>
+        </div>
+
+        <?php else: ?>
+        <!-- Botões de Login e Cadastro se o usuário não estiver logado -->
+        <div class="button-borders">
+          <a href="login.php" target="_self"><button class="primary-button">LOGIN</button></a>
+        </div>
+        <div class="button-borders">
+          <a href="cadastro.php" target="_self"><button class="primary-button">CADASTRO</button></a>
+        </div>
+      <?php endif; ?>     
         </div>
       </div>
     </nav>

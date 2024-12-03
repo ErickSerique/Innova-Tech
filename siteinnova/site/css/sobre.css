@@ -315,11 +315,6 @@ img,
 svg {
   vertical-align: middle;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 .btn-dark {
   --bs-btn-color: #fff;
   --bs-btn-bg: #212529;

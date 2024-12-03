@@ -129,11 +129,11 @@ $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : 
           <button class="btn btn-dark1 dropdown-toggle" type="button10" data-bs-toggle="dropdown" aria-expanded="false">
             <?=$nomeUsuario?>
           </button>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a href="./logout.php"><button class="dropdown-item" type="button10"></a>SAIR</button></a></li>
-          </ul>
+          <ul1 class="dropdown-menu dropdown-menu-dark">
+            <li1><a1 href="./logout.php"><button class="dropdown-item" type="button10"></a1>SAIR</button></a1></li1>
+          </ul1>
         </div>
-
+            
         <?php else: ?>
         <!-- Botões de Login e Cadastro se o usuário não estiver logado -->
         <div class="button-borders">

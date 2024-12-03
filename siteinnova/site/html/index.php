@@ -39,6 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //Caso o usuário esteja conectado em sua conta (Login)
 session_start();
 $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : null;
+
+//Código Javascript
+session_start();
+session_unset();
+session_destroy();
+echo json_encode(['success' => true]);
 ?>
 
 <!DOCTYPE html>
@@ -85,14 +91,14 @@ $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : 
       <?php if ($nomeUsuario): ?>
         <!-- Botão personalizado com o nome do usuário -->
         <div class="dropdown">
-          <button class="btn btn-dark1 dropdown-toggle" type="button10" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?=$nomeUsuario?>
           </button>
-          <ul1 class="dropdown-menu dropdown-menu-dark">
-            <li1><a1 href="./logout.php"><button class="dropdown-item" type="button10"></a1>Saindo legal </button></a1></li1>
-          </ul1>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" type="button">SAIR</button></li>
+          </ul>
         </div>
-            
+
         <?php else: ?>
         <!-- Botões de Login e Cadastro se o usuário não estiver logado -->
         <div class="button-borders">
@@ -356,6 +362,8 @@ $nomeUsuario = isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : 
       </div>
   </footer>
   
+    <script src="./logout.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -114,11 +114,9 @@ echo json_encode(['success' => true]);
     <!--Fim NavBar-->
 
     <!--Início Topo-->
-    <div class="text-secondary px-0 text-center" id="idhome"> <!--Local de Redirecionamento-->
-      <div class="py-5">
-        <h1 class="display-2 fw-bold" style="margin-top: 150px; align-content: center;">Innova Technology</h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="fs-5" style="color: white">"Onde a Tecnologia Encontra a Excelência"</p>
+    <div class="text-secondary px-0 text-center" id="idhome"> 
+  <div class="py-5" style="margin-top: 0;"> <!--Remove margin-top-->
+    <h1 class="display-2 fw-bold" style="margin-top: 100px; align-content: center;">Innova Technology</h1>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <a href="sobre.php" target="_self"><button type="button" class="btn btn-gradient-purple btn-lg px-4 me-sm-3 fw-bold">Ver Mais</button></a>
           </div>
